@@ -32,7 +32,6 @@ public class Element {
         e.data = d;
 
         Element last = this.prev;
-
         last.next = e;
         e.next = this;
         this.prev = e;
@@ -41,7 +40,14 @@ public class Element {
 
     /// Liefert die Länge der Liste.
     public int size() {
-        // TODO
-        return 0;
+        int counter = 0;
+        Element current = this;
+
+        while (current.next != this) {
+            current = current.next;
+            counter++;
+        }
+
+        return counter;
     }
 }

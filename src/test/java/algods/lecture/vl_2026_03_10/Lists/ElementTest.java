@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 public class ElementTest {
     @Test
-    public void testList_new() {
+    public void testElement_new() {
         Element anchor = new Element();
 
         assertEquals(0, anchor.data);
@@ -16,7 +16,7 @@ public class ElementTest {
     }
 
     @Test
-    public void testList_add_single() {
+    public void testElement_add_single() {
         Element anchor = new Element();
 
         anchor.add(42);
@@ -30,7 +30,7 @@ public class ElementTest {
     }
 
     @Test
-    public void testList_add_multiple() {
+    public void testElement_add_multiple() {
         Element anchor = new Element();
 
         anchor.add(42);
@@ -48,5 +48,16 @@ public class ElementTest {
         assertEquals(23, anchor.prev.prev.data);
         assertEquals(42, anchor.prev.prev.prev.data);
         assertEquals(anchor, anchor.prev.prev.prev.prev);
+    }
+
+    @Test
+    void testElement_size() {
+        Element anchor = new Element();
+        assertEquals(0, anchor.size());
+
+        anchor.add(42);
+        anchor.add(23);
+        anchor.add(38);
+        assertEquals(3, anchor.size());
     }
 }
