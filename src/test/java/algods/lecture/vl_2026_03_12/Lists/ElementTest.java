@@ -1,4 +1,4 @@
-package algods.lecture.vl_2026_03_10.Lists;
+package algods.lecture.vl_2026_03_12.Lists;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -19,7 +19,7 @@ public class ElementTest {
     public void testElement_add_single() {
         Element anchor = new Element();
 
-        anchor.add(42);
+        anchor.insertBefore(42);
 
         assertNotEquals(anchor, anchor.next);
         assertNotEquals(anchor, anchor.prev);
@@ -33,9 +33,9 @@ public class ElementTest {
     public void testElement_add_multiple() {
         Element anchor = new Element();
 
-        anchor.add(42);
-        anchor.add(23);
-        anchor.add(38);
+        anchor.insertBefore(42);
+        anchor.insertBefore(23);
+        anchor.insertBefore(38);
 
         assertEquals(0, anchor.data);
         assertEquals(42, anchor.next.data);
@@ -51,13 +51,29 @@ public class ElementTest {
     }
 
     @Test
+    void testElement_removeBofore() {
+        Element anchor = new Element();
+
+        anchor.insertBefore(42);
+        anchor.insertBefore(23);
+        anchor.insertBefore(38);
+
+        anchor.removeBefore();
+
+        assertEquals(0, anchor.data);
+        assertEquals(42, anchor.next.data);
+        assertEquals(23, anchor.next.next.data);
+        assertEquals(anchor, anchor.next.next.next);
+    }
+
+    @Test
     void testElement_size() {
         Element anchor = new Element();
         assertEquals(0, anchor.size());
 
-        anchor.add(42);
-        anchor.add(23);
-        anchor.add(38);
+        anchor.insertBefore(42);
+        anchor.insertBefore(23);
+        anchor.insertBefore(38);
         assertEquals(3, anchor.size());
     }
 }
